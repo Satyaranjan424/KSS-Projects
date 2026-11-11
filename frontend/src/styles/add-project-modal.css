@@ -1,0 +1,649 @@
+/* ==========================================================================
+   ADD NEW PROJECT MODAL - EXACT DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  --apm-bg: #eef0f6;
+  --apm-surface: #ffffff;
+  --apm-sunken: #f6f7fb;
+  --apm-line: #e1e4ee;
+  --apm-text: #171a2b;
+  --apm-muted: #6a6f87;
+  --apm-accent: #4f46e5;
+  --apm-accent-soft: #eceafd;
+  --apm-ok: #12805c;
+  --apm-ok-soft: #e3f6ee;
+  --apm-err: #d12f3f;
+  --apm-err-soft: #fdecee;
+  --apm-warn: #9a6700;
+}
+
+/* Modal Backdrop */
+.apm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 15, 26, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 24px 14px;
+  overflow-y: auto;
+  animation: apmFadeIn 0.2s ease-out;
+}
+
+/* Modal Card */
+.apm-modal {
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  background: var(--apm-surface);
+  border: 1px solid var(--apm-line);
+  border-radius: 18px;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px -20px rgba(20, 20, 60, 0.35);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: apmZoomIn 0.2s ease-out;
+  color: var(--apm-text);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+/* Header */
+.apm-header {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--apm-line);
+  background: var(--apm-surface);
+  position: relative;
+}
+
+.apm-header .ic {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--apm-accent-soft);
+  color: var(--apm-accent);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.apm-header h1 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--apm-text);
+  line-height: 1.25;
+}
+
+.apm-header p {
+  margin: 2px 0 0;
+  color: var(--apm-muted);
+  font-size: 13px;
+}
+
+.apm-close-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--apm-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.apm-close-btn:hover {
+  background: var(--apm-sunken);
+  color: var(--apm-text);
+}
+
+/* Form & Fieldsets */
+.apm-form {
+  padding: 8px 24px 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.apm-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--apm-line);
+}
+
+.apm-fieldset:last-of-type {
+  border-bottom: 0;
+}
+
+.apm-legend {
+  float: left;
+  width: 100%;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 2px;
+  padding: 0;
+  color: var(--apm-text);
+}
+
+.apm-sub {
+  clear: both;
+  color: var(--apm-muted);
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+
+/* Grids */
+.apm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.apm-grid .full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 600px) {
+  .apm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Field & Inputs */
+.apm-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.apm-label,
+.apm-lbl {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--apm-text);
+}
+
+.apm-req {
+  color: var(--apm-err);
+}
+
+.apm-opt {
+  color: var(--apm-muted);
+  font-weight: 500;
+}
+
+.apm-field input[type="text"],
+.apm-field input[type="url"],
+.apm-field textarea,
+.apm-field select {
+  width: 100%;
+  font: inherit;
+  color: var(--apm-text);
+  background: var(--apm-sunken);
+  border: 1px solid var(--apm-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  font-size: 13.5px;
+}
+
+.apm-field input::placeholder,
+.apm-field textarea::placeholder {
+  color: var(--apm-muted);
+  opacity: 0.8;
+}
+
+.apm-field select {
+  appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%236a6f87' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.apm-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.apm-field input:focus,
+.apm-field textarea:focus,
+.apm-field select:focus,
+.apm-tags:focus-within {
+  outline: 0;
+  border-color: var(--apm-accent);
+  box-shadow: 0 0 0 3px var(--apm-accent-soft);
+  background: var(--apm-surface);
+}
+
+.apm-field.invalid input,
+.apm-field.invalid textarea,
+.apm-field.invalid select,
+.apm-field.invalid .apm-tags,
+.apm-field.invalid .apm-drop {
+  border-color: var(--apm-err);
+}
+
+.apm-msg {
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--apm-muted);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 16px;
+}
+
+.apm-field.invalid .apm-msg {
+  color: var(--apm-err);
+  font-weight: 500;
+}
+
+.apm-count {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: 11px;
+  color: var(--apm-muted);
+  pointer-events: none;
+}
+
+/* Segmented Control (Status) */
+.apm-seg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: var(--apm-sunken);
+  border: 1px solid var(--apm-line);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.apm-seg input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.apm-seg label {
+  margin: 0;
+  text-align: center;
+  padding: 7px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--apm-muted);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.apm-seg input:checked + label {
+  background: var(--apm-surface);
+  color: var(--apm-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.apm-seg input:focus-visible + label {
+  outline: 2px solid var(--apm-accent);
+}
+
+.apm-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.apm-seg input:checked + label .apm-dot.live {
+  color: var(--apm-ok);
+}
+
+.apm-seg input:checked + label .apm-dot.dev {
+  color: var(--apm-warn);
+}
+
+.apm-seg input:checked + label .apm-dot.arch {
+  color: var(--apm-muted);
+}
+
+/* Thumbnail Dropzone */
+.apm-drop {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border: 1.5px dashed var(--apm-line);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--apm-sunken);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.apm-drop:hover,
+.apm-drop.over {
+  border-color: var(--apm-accent);
+  background: var(--apm-accent-soft);
+}
+
+.apm-drop:focus-visible {
+  outline: 2px solid var(--apm-accent);
+}
+
+.apm-drop .txt {
+  flex: 1;
+  min-width: 0;
+}
+
+.apm-drop strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--apm-text);
+}
+
+.apm-drop small {
+  color: var(--apm-muted);
+  font-size: 12px;
+}
+
+.apm-thumb {
+  width: 150px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  border: 1px solid var(--apm-line);
+  background: var(--apm-surface);
+  display: grid;
+  place-items: center;
+  color: var(--apm-muted);
+  overflow: hidden;
+  flex: none;
+}
+
+.apm-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Buttons */
+.apm-btn {
+  font: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 9px 16px;
+  border: 1px solid var(--apm-line);
+  background: var(--apm-surface);
+  color: var(--apm-text);
+  cursor: pointer;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.apm-btn:hover {
+  border-color: var(--apm-accent);
+}
+
+.apm-btn:focus-visible {
+  outline: 2px solid var(--apm-accent);
+  outline-offset: 2px;
+}
+
+.apm-btn.primary {
+  background: var(--apm-accent);
+  border-color: var(--apm-accent);
+  color: #fff;
+}
+
+.apm-btn.primary:hover {
+  filter: brightness(1.08);
+}
+
+.apm-btn.sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Tags Input */
+.apm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  background: var(--apm-sunken);
+  border: 1px solid var(--apm-line);
+  border-radius: 10px;
+  padding: 6px 8px;
+  min-height: 44px;
+  transition: 0.15s;
+}
+
+.apm-tags input {
+  flex: 1;
+  min-width: 140px;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 5px 4px !important;
+  font-size: 13.5px;
+  color: var(--apm-text);
+}
+
+.apm-tags input:focus {
+  box-shadow: none !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+.apm-chip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  background: var(--apm-accent-soft);
+  color: var(--apm-accent);
+  border-radius: 8px;
+  padding: 4px 6px 4px 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.apm-chip button {
+  all: unset;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.apm-chip button:hover,
+.apm-chip button:focus-visible {
+  background: var(--apm-accent);
+  color: #fff;
+}
+
+.apm-sugg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--apm-muted);
+}
+
+.apm-sugg button {
+  font: inherit;
+  font-size: 12px;
+  border: 1px dashed var(--apm-line);
+  background: transparent;
+  color: var(--apm-muted);
+  border-radius: 8px;
+  padding: 3px 9px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.apm-sugg button:hover {
+  color: var(--apm-accent);
+  border-color: var(--apm-accent);
+}
+
+/* Lead Icon & State in URL Inputs */
+.apm-lead {
+  position: relative;
+}
+
+.apm-lead > svg.lead-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--apm-muted);
+  pointer-events: none;
+}
+
+.apm-lead input {
+  padding-left: 38px !important;
+  padding-right: 38px !important;
+}
+
+.apm-state {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.apm-field.ok .apm-state {
+  display: block;
+  color: var(--apm-ok);
+}
+
+.apm-field.ok .apm-msg {
+  color: var(--apm-ok);
+}
+
+.apm-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: var(--apm-ok-soft);
+  color: var(--apm-ok);
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+
+.apm-pill.off {
+  background: var(--apm-sunken);
+  color: var(--apm-muted);
+}
+
+/* Tip Box */
+.apm-tip {
+  display: flex;
+  gap: 10px;
+  background: var(--apm-sunken);
+  border: 1px solid var(--apm-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  color: var(--apm-muted);
+  margin-top: 16px;
+}
+
+.apm-tip svg {
+  flex: none;
+  color: var(--apm-accent);
+  margin-top: 1px;
+}
+
+/* Footer */
+.apm-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--apm-line);
+  background: var(--apm-surface);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.apm-footer span {
+  color: var(--apm-muted);
+  font-size: 12px;
+}
+
+/* Animations */
+@keyframes apmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes apmZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Uploading State & Spinner */
+.apm-uploading-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--apm-accent-soft);
+  color: var(--apm-accent);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.apm-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--apm-accent);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: apmSpin 0.8s linear infinite;
+}
+
+@keyframes apmSpin {
+  to { transform: rotate(360deg); }
+}
+
