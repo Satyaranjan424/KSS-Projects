@@ -5,6 +5,18 @@ A production-ready, high-performance REST API built with **Python 3.12+**, **Fas
 
 ---
 
+## 🚀 Live Deployment
+
+| Service | URL |
+|---------|-----|
+| ⚙️ **Backend API (Vercel)** | [https://backend-wheat-rho-17.vercel.app](https://backend-wheat-rho-17.vercel.app) |
+| 📖 **Swagger UI (Docs)** | [https://backend-wheat-rho-17.vercel.app/docs](https://backend-wheat-rho-17.vercel.app/docs) |
+| 📄 **ReDoc** | [https://backend-wheat-rho-17.vercel.app/redoc](https://backend-wheat-rho-17.vercel.app/redoc) |
+| 💚 **Health Check** | [https://backend-wheat-rho-17.vercel.app/health](https://backend-wheat-rho-17.vercel.app/health) |
+| 🌐 **Frontend (Vercel)** | [https://kss-projects.vercel.app](https://kss-projects.vercel.app) |
+
+---
+
 ## 1. Architecture & Directory Structure
 
 ```
