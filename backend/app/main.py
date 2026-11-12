@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError
 import logging
 from app.core.config import settings
 from app.routers import projects, categories, dashboard, uploads, auth
+from app.routers import admin as admin_router
 
 # Initialize FastAPI application
 app = FastAPI(
@@ -80,6 +81,7 @@ app.include_router(categories.router, prefix=api_prefix)
 app.include_router(dashboard.router, prefix=api_prefix)
 app.include_router(uploads.router, prefix=api_prefix)
 app.include_router(auth.router, prefix=api_prefix)
+app.include_router(admin_router.router, prefix=api_prefix)
 
 
 @app.get("/", tags=["Health"])

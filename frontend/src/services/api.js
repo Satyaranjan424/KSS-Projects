@@ -6,6 +6,17 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
 /**
+ * Thrown when a protected endpoint returns 401 / 403.
+ * Callers can catch this and re-trigger the admin password modal.
+ */
+export class AdminAuthError extends Error {
+  constructor(message = 'Admin authorization required') {
+    super(message);
+    this.name = 'AdminAuthError';
+  }
+}
+
+/**
  * Helper to execute fetch with timeout
  */
 async function fetchWithTimeout(resource, options = {}, timeout = 6000) {
@@ -21,6 +32,13 @@ async function fetchWithTimeout(resource, options = {}, timeout = 6000) {
   } catch (error) {
     clearTimeout(id);
     throw error;
+  }
+}
+
+/** Raise AdminAuthError when backend returns 401 or 403 */
+function checkAuth(res) {
+  if (res.status === 401 || res.status === 403) {
+    throw new AdminAuthError('Admin session expired or invalid. Please verify your password again.');
   }
 }
 
@@ -70,72 +88,65 @@ export async function fetchProjectById(id) {
 }
 
 /**
- * Create a new project
+ * Create a new project — requires admin Authorization header
+ * @param {object} projectData
+ * @param {object} authHeaders  — { Authorization: 'Bearer <token>' }
  */
-export async function createProject(projectData) {
-  try {
-    const res = await fetchWithTimeout(`${API_BASE_URL}/projects`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(projectData)
-    });
-    if (!res.ok) {
-      const errBody = await res.json().catch(() => ({}));
-      throw new Error(errBody.message || `Failed to create project: ${res.statusText}`);
-    }
-    const json = await res.json();
-    return json.data;
-  } catch (err) {
-    console.warn('[API] Create project API error:', err.message);
-    return null;
+export async function createProject(projectData, authHeaders = {}) {
+  const res = await fetchWithTimeout(`${API_BASE_URL}/projects`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...authHeaders,
+    },
+    body: JSON.stringify(projectData)
+  });
+  checkAuth(res);
+  if (!res.ok) {
+    const errBody = await res.json().catch(() => ({}));
+    throw new Error(errBody.message || errBody.detail || `Failed to create project: ${res.statusText}`);
   }
+  const json = await res.json();
+  return json.data;
 }
 
 /**
- * Update an existing project
+ * Update an existing project — requires admin Authorization header
  */
-export async function updateProject(id, projectData) {
-  try {
-    const res = await fetchWithTimeout(`${API_BASE_URL}/projects/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(projectData)
-    });
-    if (!res.ok) {
-      throw new Error(`Failed to update project: ${res.statusText}`);
-    }
-    const json = await res.json();
-    return json.data;
-  } catch (err) {
-    console.warn('[API] Update project API error:', err.message);
-    return null;
+export async function updateProject(id, projectData, authHeaders = {}) {
+  const res = await fetchWithTimeout(`${API_BASE_URL}/projects/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      ...authHeaders,
+    },
+    body: JSON.stringify(projectData)
+  });
+  checkAuth(res);
+  if (!res.ok) {
+    const errBody = await res.json().catch(() => ({}));
+    throw new Error(errBody.message || errBody.detail || `Failed to update project: ${res.statusText}`);
   }
+  const json = await res.json();
+  return json.data;
 }
 
 /**
- * Delete a project
+ * Delete a project — requires admin Authorization header
  */
-export async function deleteProject(id) {
-  try {
-    const res = await fetchWithTimeout(`${API_BASE_URL}/projects/${id}`, {
-      method: 'DELETE'
-    });
-    if (!res.ok) {
-      throw new Error(`Failed to delete project: ${res.statusText}`);
-    }
-    if (res.status === 204) {
-      return true;
-    }
-    const json = await res.json().catch(() => ({}));
-    return json.data !== undefined ? json.data : true;
-  } catch (err) {
-    console.warn('[API] Delete project API error:', err.message);
-    return false;
+export async function deleteProject(id, authHeaders = {}) {
+  const res = await fetchWithTimeout(`${API_BASE_URL}/projects/${id}`, {
+    method: 'DELETE',
+    headers: { ...authHeaders },
+  });
+  checkAuth(res);
+  if (!res.ok) {
+    const errBody = await res.json().catch(() => ({}));
+    throw new Error(errBody.message || errBody.detail || `Failed to delete project: ${res.statusText}`);
   }
+  if (res.status === 204) return true;
+  const json = await res.json().catch(() => ({}));
+  return json.data !== undefined ? json.data : true;
 }
 
 /**

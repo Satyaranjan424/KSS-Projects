@@ -4,7 +4,7 @@ from fastapi import APIRouter, Query, Depends, status, HTTPException
 from app.schemas.common import StandardResponse, PaginationMeta
 from app.schemas.project import ProjectCreate, ProjectUpdate, ProjectResponse
 from app.services.project_service import ProjectService
-from app.core.security import require_admin
+from app.routers.admin import require_admin_token
 
 router = APIRouter(prefix="/projects", tags=["Projects"])
 
@@ -69,10 +69,10 @@ def get_project(project_id: str):
 @router.post("", response_model=StandardResponse[ProjectResponse], status_code=status.HTTP_201_CREATED)
 def create_project(
     data: ProjectCreate,
-    admin=Depends(require_admin)
+    admin=Depends(require_admin_token)
 ):
     """
-    Create a new project (Admin authentication required).
+    Create a new project (Admin session token required).
     """
     created = ProjectService.create_project(data)
     return StandardResponse(
@@ -86,10 +86,10 @@ def create_project(
 def update_project(
     project_id: str,
     data: ProjectUpdate,
-    admin=Depends(require_admin)
+    admin=Depends(require_admin_token)
 ):
     """
-    Update an existing project (Admin authentication required).
+    Update an existing project (Admin session token required).
     """
     updated = ProjectService.update_project(project_id, data)
     return StandardResponse(
@@ -102,10 +102,10 @@ def update_project(
 @router.delete("/{project_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_project(
     project_id: str,
-    admin=Depends(require_admin)
+    admin=Depends(require_admin_token)
 ):
     """
-    Delete a project (Admin authentication required).
+    Delete a project (Admin session token required).
     """
     ProjectService.delete_project(project_id)
     return None

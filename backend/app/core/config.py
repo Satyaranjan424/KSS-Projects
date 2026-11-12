@@ -27,6 +27,12 @@ class Settings(BaseSettings):
     CLOUDINARY_API_SECRET: str = ""
     CLOUDINARY_FOLDER: str = "kalpanaam/projects"
 
+    # Admin Password-Protected Session
+    # Generate hash: python -c "import bcrypt; print(bcrypt.hashpw(b'yourpassword', bcrypt.gensalt(12)).decode())"
+    ADMIN_PASSWORD_HASH: str = ""
+    ADMIN_SESSION_SECRET: str = ""
+    ADMIN_SESSION_DURATION: int = 900  # 15 minutes in seconds
+
     # CORS
     BACKEND_CORS_ORIGINS: Union[List[str], str] = [
         "http://localhost:5173",

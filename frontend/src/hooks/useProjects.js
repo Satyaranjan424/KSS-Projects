@@ -144,7 +144,7 @@ export const useProjects = () => {
   }, []);
 
   // Add new project (optimistic update + backend sync)
-  const addProject = useCallback(async (newProjectData) => {
+  const addProject = useCallback(async (newProjectData, authHeaders = {}) => {
     const tempId = `proj-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
     const optimisticProj = {
       ...newProjectData,
@@ -159,7 +159,7 @@ export const useProjects = () => {
 
     // Try posting to backend API
     try {
-      const serverProj = await createProject(newProjectData);
+      const serverProj = await createProject(newProjectData, authHeaders);
       if (serverProj && serverProj.id) {
         setProjects((prev) =>
           prev.map((p) => {
@@ -187,7 +187,7 @@ export const useProjects = () => {
   }, []);
 
   // Update an existing project (optimistic update + backend sync)
-  const editProject = useCallback(async (projectId, updatedData) => {
+  const editProject = useCallback(async (projectId, updatedData, authHeaders = {}) => {
     setProjects((prev) =>
       prev.map((p) => {
         if (p.id === projectId) {
@@ -205,7 +205,7 @@ export const useProjects = () => {
     );
 
     try {
-      const serverProj = await updateProject(projectId, updatedData);
+      const serverProj = await updateProject(projectId, updatedData, authHeaders);
       if (serverProj) {
         setProjects((prev) =>
           prev.map((p) => {
@@ -230,11 +230,11 @@ export const useProjects = () => {
   }, []);
 
   // Delete a project (optimistic remove + backend sync)
-  const deleteProject = useCallback(async (projectId) => {
+  const deleteProject = useCallback(async (projectId, authHeaders = {}) => {
     setProjects((prev) => prev.filter((p) => p.id !== projectId));
 
     try {
-      await apiDeleteProject(projectId);
+      await apiDeleteProject(projectId, authHeaders);
     } catch (err) {
       console.warn('Backend delete project failed:', err);
     }
