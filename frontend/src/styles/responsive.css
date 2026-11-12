@@ -1,0 +1,657 @@
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE STYLES
+   KSS Projects Dashboard — All screen sizes
+   Breakpoints:
+     xs:  ≤ 400px   (small phones)
+     sm:  ≤ 480px   (phones)
+     md:  ≤ 640px   (large phones / small tablets)
+     lg:  ≤ 768px   (tablets portrait)
+     xl:  ≤ 960px   (tablets landscape)
+     2xl: ≤ 1080px  (small laptops)
+   ========================================================================== */
+
+/* ═══════════════════════════════════════════════════════════════
+   1. GLOBAL BASE — touch targets, tap highlights, scroll
+   ═══════════════════════════════════════════════════════════════ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. TOP NAVBAR
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .top-navbar {
+    padding: 12px 14px;
+  }
+  .brand-emblem {
+    height: 34px;
+  }
+  .brand-text-logo {
+    height: 18px;
+  }
+  .brand-wrapper {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-text-logo {
+    height: 15px;
+  }
+  .brand-emblem {
+    height: 28px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. BANNER / HERO SECTION
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .banner-section {
+    padding: 20px 20px 10px;
+  }
+  .banner-inner-container {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .banner-left-content {
+    max-width: 100%;
+    width: 100%;
+  }
+  .banner-right-content {
+    width: 100%;
+    padding-top: 0;
+  }
+  .btn-banner-add-project {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .banner-section {
+    padding: 16px 16px 8px;
+  }
+  .banner-main-title {
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+  .banner-subtitle {
+    font-size: 0.85rem;
+    margin-top: 6px;
+  }
+  .banner-stats-row {
+    margin-top: 14px;
+  }
+  .banner-ribbon-wave {
+    width: 220px;
+    height: 150px;
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-main-title {
+    font-size: 1.55rem;
+  }
+  .banner-subtitle {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .banner-main-title {
+    font-size: 1.35rem;
+  }
+  .banner-ribbon-wave {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. STATS CARDS (Live / In Development)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+  .stat-card {
+    min-width: 0;
+    padding: 10px 14px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+  .stat-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+  .stat-value {
+    font-size: 1.4rem;
+  }
+  .stat-label {
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .stat-card {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+  .stat-icon-wrapper {
+    width: 30px;
+    height: 30px;
+  }
+  .stat-value {
+    font-size: 1.2rem;
+  }
+  .stat-label {
+    font-size: 0.68rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. MAIN DASHBOARD CONTAINER
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .dashboard-main-container {
+    padding: 10px 16px 48px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-main-container {
+    padding: 8px 12px 40px;
+    gap: 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6. TOOLBAR — Tabs + Search + Sort
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .toolbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .search-sort-group {
+    max-width: 100%;
+    justify-content: stretch;
+  }
+}
+
+@media (max-width: 640px) {
+  .tabs-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 8px;
+  }
+  .tab-btn {
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    justify-content: center;
+    gap: 6px;
+  }
+  .search-sort-group {
+    gap: 8px;
+  }
+  .sort-btn {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sort-label-text {
+    display: none; /* Hide "Sort:" label on small screens */
+  }
+  .sort-current-val {
+    display: none; /* Just show chevron + icon on xs */
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-btn {
+    padding: 9px 10px;
+    font-size: 0.82rem;
+  }
+  .search-input {
+    padding: 10px 36px 10px 38px;
+    font-size: 0.85rem;
+  }
+  /* Show sort label again on smallest screens to avoid confusion */
+  .sort-current-val {
+    display: inline;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. PROJECTS GRID
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 1080px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 680px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. PROJECT CARD
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 680px) {
+  .project-card {
+    border-radius: 16px;
+  }
+  .card-preview-container {
+    height: 160px;
+  }
+  .card-body {
+    padding: 12px 12px 14px;
+    gap: 10px;
+  }
+  .card-project-name {
+    font-size: 1rem;
+  }
+  .card-description {
+    font-size: 0.82rem;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-preview-container {
+    height: 150px;
+  }
+  .card-body {
+    padding: 10px 10px 12px;
+  }
+  .card-project-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+  .card-project-icon-box svg {
+    width: 18px;
+    height: 18px;
+  }
+  .card-project-name {
+    font-size: 0.95rem;
+  }
+  .card-action-icon-btn {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Card action buttons on mobile — wrap to 2 rows if needed */
+@media (max-width: 400px) {
+  .card-actions-row {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .btn-live-project {
+    flex: 1 1 100%;
+    padding: 9px 10px;
+    font-size: 0.8rem;
+  }
+  .btn-design-link,
+  .btn-doc-link {
+    flex: 1 1 calc(50% - 3px);
+    padding: 9px 6px;
+    font-size: 0.78rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9. PAGINATION BAR
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 680px) {
+  .pagination-bar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+  }
+  .pagination-summary {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .pagination-arrow-btn,
+  .pagination-num-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  .pagination-controls {
+    gap: 4px;
+  }
+  .pagination-numbers {
+    gap: 4px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   10. ADD PROJECT MODAL (apm-* classes — from add-project-modal.css)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .apm-overlay {
+    padding: 16px 10px;
+    align-items: flex-end; /* slide up from bottom on mobile */
+  }
+  .apm-modal {
+    max-width: 100%;
+    max-height: 94vh;
+    border-radius: 20px 20px 0 0; /* bottom sheet style */
+  }
+}
+
+@media (max-width: 480px) {
+  .apm-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .apm-modal {
+    max-height: 96vh;
+    border-radius: 20px 20px 0 0;
+  }
+  .apm-header {
+    padding: 16px 16px;
+  }
+  .apm-header h1 {
+    font-size: 15px;
+  }
+  .apm-form {
+    padding: 0 16px;
+  }
+  .apm-fieldset {
+    padding: 16px 0;
+  }
+  .apm-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .apm-footer {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+  .apm-btn {
+    padding: 9px 14px;
+    font-size: 0.85rem;
+  }
+  .apm-drop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+  }
+  .apm-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .apm-seg label {
+    font-size: 12px;
+    padding: 6px 4px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .apm-seg {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   11. DELETE CONFIRM MODAL
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Delete modal reuses .apm-overlay/.apm-modal */
+  .apm-modal[style*="max-width: 460px"],
+  .apm-modal[style*="max-width:460px"] {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Delete modal body */
+  .apm-modal > div[style*="padding: 24px"] {
+    padding: 16px 16px 8px !important;
+  }
+  /* Delete modal footer */
+  .apm-footer[style*="justify-content: flex-end"] {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .apm-footer[style*="justify-content: flex-end"] .apm-btn {
+    justify-content: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   12. ADMIN PASSWORD MODAL
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .admin-pw-modal {
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-pw-modal .apm-header {
+    padding: 16px 16px;
+  }
+  .admin-pw-modal form > div {
+    padding: 16px !important;
+  }
+  .admin-pw-modal .apm-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    padding: 12px 16px;
+  }
+  .admin-pw-modal .apm-btn,
+  .admin-pw-submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .admin-pw-shield-row {
+    padding: 12px;
+  }
+  .admin-pw-desc {
+    font-size: 13px;
+  }
+  .admin-pw-input {
+    height: 46px;
+    font-size: 16px; /* prevents iOS zoom on input focus */
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   13. SORT DROPDOWN — ensure it doesn't overflow on mobile
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .sort-dropdown {
+    right: 0;
+    left: auto;
+    min-width: 140px;
+    max-width: calc(100vw - 24px);
+  }
+  .sort-option-btn {
+    padding: 10px 12px;
+    font-size: 0.875rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   14. EMPTY STATE
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .empty-state {
+    padding: 40px 16px;
+  }
+  .empty-state-title {
+    font-size: 1.1rem;
+  }
+  .empty-state-text {
+    font-size: 0.84rem;
+  }
+  .btn-add-project {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   15. MOCKUP PREVIEW — scale down on small cards
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .mockup-sidebar {
+    width: 80px;
+    padding: 6px 4px;
+    font-size: 0.55rem;
+  }
+  .mockup-brand {
+    font-size: 0.6rem;
+  }
+  .mockup-nav-item {
+    padding: 2px 4px;
+  }
+  .mockup-content {
+    padding: 8px;
+    gap: 6px;
+  }
+  .mockup-header-title {
+    font-size: 0.7rem;
+  }
+  .mockup-metrics-grid {
+    gap: 4px;
+  }
+  .mockup-metric-lbl {
+    font-size: 0.48rem;
+  }
+  .mockup-metric-val {
+    font-size: 0.65rem;
+  }
+  .mockup-gauge-circle {
+    width: 50px;
+    height: 50px;
+  }
+  .mockup-gauge-val {
+    font-size: 0.62rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   16. TECH BADGE WRAP in card
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .card-tech-list {
+    gap: 4px;
+  }
+  .tech-badge {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   17. GLOBAL UTILITY — full-width buttons on xs
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 360px) {
+  .btn-banner-add-project,
+  .btn-modal-save,
+  .btn-modal-cancel {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   18. INPUT FONT SIZE FIX — prevent iOS auto-zoom on focus
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .search-input,
+  .field-text-input,
+  .field-select-input,
+  .field-textarea-input,
+  .tech-inline-input,
+  .apm-field input[type="text"],
+  .apm-field input[type="url"],
+  .apm-field textarea,
+  .apm-field select {
+    font-size: 16px !important; /* iOS won't zoom at 16px */
+  }
+  .apm-field input[type="text"],
+  .apm-field input[type="url"],
+  .apm-field textarea,
+  .apm-field select {
+    padding: 11px 12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   19. LANDSCAPE PHONE adjustments (short screens)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .apm-overlay {
+    align-items: center;
+    padding: 10px;
+  }
+  .apm-modal {
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+  .admin-pw-modal {
+    border-radius: 16px !important;
+  }
+  .banner-section {
+    padding: 12px 20px 8px;
+  }
+  .banner-main-title {
+    font-size: 1.5rem;
+  }
+  .banner-stats-row {
+    margin-top: 10px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   20. SAFE AREA INSETS for iPhone notch / home bar
+   ═══════════════════════════════════════════════════════════════ */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .apm-footer {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+  .dashboard-main-container {
+    padding-bottom: calc(48px + env(safe-area-inset-bottom));
+  }
+}
+

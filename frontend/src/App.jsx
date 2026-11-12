@@ -15,6 +15,7 @@ import './styles/global.css';
 import './styles/dashboard.css';
 import './styles/components.css';
 import './styles/admin-password-modal.css';
+import './styles/responsive.css';
 
 export function App() {
   const {
