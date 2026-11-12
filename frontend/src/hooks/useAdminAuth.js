@@ -87,3 +87,4 @@ export function useAdminAuth() {
 
   return { isAuthorized, verifyPassword, getAuthHeader, clearAuth, secondsRemaining };
 }
+

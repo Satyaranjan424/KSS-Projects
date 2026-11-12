@@ -181,3 +181,4 @@ def verify_session(
         "valid": True,
         "expires_in": remaining,
     }
+
